@@ -16,7 +16,8 @@ var renderCloud = function (ctx, x, y, color) {
 
 var writeText = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.font = 'PT Mono FONTSIZE';
+  ctx.font = '16px PT Mono';
+
   ctx.fillText('Ура вы победили!', PADDING, BAR_WIDTH);
   ctx.fillText('Список результатов:', PADDING, BAR_WIDTH + FONTSIZE);
 };
@@ -32,16 +33,20 @@ var getMaxElement = function (timeResults) {
   return maxElement;
 };
 
+var getCandomColor = function (playerName) {
+  for (var i = 0; i < playerName.length; i++) {
+    var transparent = Math.random();
+  }
+  return 'rgba(1,1,255,' + transparent + ')';
+
+};
+
 var getNamesAndScore = function (ctx, names, times) {
   var playerName = names;
   var maxTime = getMaxElement(times);
 
-  for (var i = 0; i < playerName.length; i++) {
-    var fillColor = function () {
-      var transparent = Math.random();
-      return 'rgba(1,1,255,' + transparent + ')';
-    };
 
+  for (var i = 0; i < playerName.length; i++) {
     ctx.fillStyle = 'rgba(0, 0, 0, 1';
     ctx.fillText(Math.round(times[i]), PADDING + GAP * i * 2, CLOUD_HEIGHT - (BAR_HEIGHT * times[i] / maxTime) - BAR_WIDTH);
 
@@ -50,13 +55,12 @@ var getNamesAndScore = function (ctx, names, times) {
     if (playerName[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = fillColor();
+      ctx.fillStyle = getCandomColor(names);
     }
 
     ctx.fillRect(PADDING + GAP * i * 2, (CLOUD_HEIGHT - TEXT_WIDTH), (BAR_WIDTH), -1 * (BAR_HEIGHT * times[i]) / maxTime);
   }
 };
-
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.3)');
@@ -64,4 +68,5 @@ window.renderStatistics = function (ctx, names, times) {
   getMaxElement(times);
   writeText(ctx);
   getNamesAndScore(ctx, names, times);
-};
+}
+
