@@ -38,13 +38,11 @@ var getCandomColor = function (playerName) {
     var transparent = Math.random();
   }
   return 'rgba(1,1,255,' + transparent + ')';
-
 };
 
 var getNamesAndScore = function (ctx, names, times) {
   var playerName = names;
   var maxTime = getMaxElement(times);
-
 
   for (var i = 0; i < playerName.length; i++) {
     ctx.fillStyle = 'rgba(0, 0, 0, 1';
@@ -57,7 +55,6 @@ var getNamesAndScore = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getCandomColor(names);
     }
-
     ctx.fillRect(PADDING + GAP * i * 2, (CLOUD_HEIGHT - TEXT_WIDTH), (BAR_WIDTH), -1 * (BAR_HEIGHT * times[i]) / maxTime);
   }
 };
@@ -68,5 +65,4 @@ window.renderStatistics = function (ctx, names, times) {
   getMaxElement(times);
   writeText(ctx);
   getNamesAndScore(ctx, names, times);
-}
-
+};
