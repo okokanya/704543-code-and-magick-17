@@ -5,18 +5,16 @@ var surnames = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
 
-var getRandom = function (arrayToRandomize) {
+var getRandomElement = function (arrayToRandomize) {
   var randomCoef = Math.floor(Math.random() * arrayToRandomize.length);
   var randomItem = arrayToRandomize[randomCoef];
   return randomItem;
 };
 
 var getFullName = function (namesArray, surnamesArray) {
-  var randomName = getRandom(namesArray);
-  var randomSurname = getRandom(surnamesArray);
-  var fullName = '';
-  fullName = randomName + ' ' + randomSurname;
-  return fullName;
+  var randomName = getRandomElement(namesArray);
+  var randomSurname = getRandomElement(surnamesArray);
+  return randomName + ' ' + randomSurname;
 };
 
 var userDialog = document.querySelector('.setup');
@@ -29,14 +27,14 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-var renderWizard = function (namesArray, surnamesArray, coatColorArray, eyeColorArray) {
+var renderWizards = function (namesArray, surnamesArray, coatColorArray, eyeColorArray) {
   for (var i = 0; i < 4; i++) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     similarListElement.appendChild(wizardElement);
     wizardElement.querySelector('.setup-similar-label').textContent = getFullName(namesArray, surnamesArray);
-    wizardElement.querySelector('.wizard-coat').style.fill = getRandom(coatColorArray);
-    wizardElement.querySelector('.wizard-eyes').style.fill = getRandom(eyeColorArray);
+    wizardElement.querySelector('.wizard-coat').style.fill = getRandomElement(coatColorArray);
+    wizardElement.querySelector('.wizard-eyes').style.fill = getRandomElement(eyeColorArray);
   }
 };
 
-renderWizard(names, surnames, coatColor, eyesColor);
+renderWizards(names, surnames, coatColor, eyesColor);
