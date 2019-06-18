@@ -95,8 +95,6 @@ closePopUpClickButton.addEventListener('click', function () {
   closePopup();
 });
 
-setupUserName = document.querySelector('.setup-user-name');
-
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
     closePopup();
