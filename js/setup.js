@@ -55,7 +55,6 @@ var changeColor = function (whatToChange, whatColorUseArray, typeOfColor) {
     whatToChange.style.backgroundColor = getRandomElement(whatColorUseArray);
   }
 };
-
 wizardCoat.addEventListener('click', function () {
   changeColor(wizardCoat, coatColor, 'fill');
 });
@@ -63,7 +62,6 @@ wizardCoat.addEventListener('click', function () {
 fireball.addEventListener('click', function () {
   changeColor(fireball, fireballColor, 'bg');
 });
-
 eyes.addEventListener('click', function () {
   changeColor(eyes, eyesColor, 'fill');
 });
@@ -81,11 +79,14 @@ clickIcon.addEventListener('keydown', function (evt) {
     openPopup();
   }
 });
-// document.addEventListener('keydown', function (evt) {
-//   if (evt.keyCode === 13) {
-//     openPopup();
-//   }
-// });
+
+closePopUpClickButton.addEventListener('focus', function () {
+  closePopUpClickButton.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      closePopup();
+    }
+  });
+});
 
 openPopUpClickButton.addEventListener('click', function () {
   userDialog.classList.remove('hidden');
@@ -95,21 +96,15 @@ closePopUpClickButton.addEventListener('click', function () {
   closePopup();
 });
 
+setupUserName = document.querySelector('.setup-user-name');
 
-// document.addEventListener('keydown', function (evt) {
-//   if (!setupUserNamefocused) {
-//     if (evt.keyCode === 27) {
-//       closePopup();
-//     }
-//   }
-// });
-
-setupUserName.addEventListener('focus', function () {
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 27) {
-      closePopup();
-    }
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 27) {
+    closePopup();
   }
-  );
 });
 
+var formData = new FormData(document.forms.wizardName);
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://js.dump.academy/code-and-magick');
+xhr.send(formData);
