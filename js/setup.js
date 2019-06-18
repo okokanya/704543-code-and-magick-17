@@ -41,7 +41,6 @@ var renderWizards = function (namesArray, surnamesArray, coatColorArray, eyeColo
 renderWizards(names, surnames, coatColor, eyesColor);
 
 var openPopUpClickButton = document.querySelector('.setup-open');
-var setupUserName = document.querySelector('.setup-user-name');
 var clickIcon = document.querySelector('.setup-open-icon');
 var closePopUpClickButton = document.querySelector('.setup-close');
 var wizardCoat = document.querySelector('.wizard-coat');
